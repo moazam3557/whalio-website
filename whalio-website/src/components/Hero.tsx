@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { ArrowRight, Database, Cpu, Workflow, BarChart3, CheckCircle2 } from 'lucide-react';
+import { useContactModal } from '@/context/ContactContext';
 
 export const Hero = () => {
+  const { openContactModal } = useContactModal();
+
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-[#0b132b] text-white overflow-hidden border-b border-slate-800/80">
       {/* Background Subtle Mesh & Ocean Data Glow */}
@@ -33,13 +36,13 @@ export const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <a
-                href="mailto:moazam.ali@whaliotechnologies.com"
+              <button
+                onClick={openContactModal}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/35"
               >
                 Let's Talk
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </button>
               <a
                 href="#solutions"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 font-semibold text-base transition-all duration-200"

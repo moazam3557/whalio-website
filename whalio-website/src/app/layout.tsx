@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ContactProvider } from '@/context/ContactContext';
+import { ContactModal } from '@/components/ContactModal';
 
 export const metadata: Metadata = {
   title: 'Whalio Technologies | Simple Software. Smarter Business.',
@@ -31,7 +33,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="antialiased bg-[#f8fafc] text-[#0b132b]">
-        {children}
+        <ContactProvider>
+          {children}
+          <ContactModal />
+        </ContactProvider>
       </body>
     </html>
   );

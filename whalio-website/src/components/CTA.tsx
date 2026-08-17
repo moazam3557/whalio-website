@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
+import { useContactModal } from '@/context/ContactContext';
 
 export const CTA = () => {
+  const { openContactModal } = useContactModal();
+
   return (
     <section className="py-24 bg-[#0b132b] text-white relative overflow-hidden">
       {/* Background glow and mesh */}
@@ -26,13 +29,13 @@ export const CTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="mailto:moazam.ali@whaliotechnologies.com"
+            <button
+              onClick={openContactModal}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/35"
             >
               Talk to Whalio
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </button>
             
             <a
               href="mailto:hello@whaliotechnologies.com"
@@ -44,7 +47,7 @@ export const CTA = () => {
           </div>
 
           <div className="mt-8 text-xs text-slate-400 font-mono">
-            Direct Founder Contact: <span className="text-cyan-400">moazam.ali@whaliotechnologies.com</span>
+            Direct Founder Contact: <a href="mailto:moazam.ali@whaliotechnologies.com" className="text-cyan-400 hover:underline">moazam.ali@whaliotechnologies.com</a>
           </div>
 
         </div>

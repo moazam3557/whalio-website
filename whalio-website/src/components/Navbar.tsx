@@ -1,13 +1,14 @@
-'use me';
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { WhalioLogo } from './WhalioLogo';
 import { Menu, X } from 'lucide-react';
+import { useContactModal } from '@/context/ContactContext';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openContactModal } = useContactModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,12 +69,12 @@ export const Navbar = () => {
 
           {/* Primary CTA */}
           <div className="hidden md:flex items-center">
-            <a
-              href="mailto:moazam.ali@whaliotechnologies.com"
+            <button
+              onClick={openContactModal}
               className="px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all duration-200 shadow-sm shadow-cyan-500/20 hover:shadow-cyan-400/30"
             >
               Let's Talk
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,13 +106,15 @@ export const Navbar = () => {
             ))}
           </div>
           <div className="pt-2">
-            <a
-              href="mailto:moazam.ali@whaliotechnologies.com"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openContactModal();
+              }}
               className="block w-full text-center px-5 py-3 rounded-lg bg-cyan-500 text-slate-950 font-semibold text-sm hover:bg-cyan-400 transition-colors"
             >
               Let's Talk
-            </a>
+            </button>
           </div>
         </div>
       )}

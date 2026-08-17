@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { WhalioLogo } from './WhalioLogo';
+import { useContactModal } from '@/context/ContactContext';
 
 export const Footer = () => {
+  const { openContactModal } = useContactModal();
+
   return (
     <footer className="bg-[#070c1a] text-slate-400 py-16 border-t border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,9 +74,17 @@ export const Footer = () => {
             </h4>
             <div className="space-y-2 text-sm">
               <div>
+                <button
+                  onClick={openContactModal}
+                  className="text-cyan-400 font-semibold hover:underline cursor-pointer block text-left"
+                >
+                  Send Inquiry Form →
+                </button>
+              </div>
+              <div>
                 <a
                   href="mailto:moazam.ali@whaliotechnologies.com"
-                  className="hover:text-cyan-400 transition-colors block break-all"
+                  className="hover:text-cyan-400 transition-colors block break-all text-xs"
                 >
                   moazam.ali@whaliotechnologies.com
                 </a>
@@ -81,7 +92,7 @@ export const Footer = () => {
               <div>
                 <a
                   href="mailto:hello@whaliotechnologies.com"
-                  className="hover:text-cyan-400 transition-colors block"
+                  className="hover:text-cyan-400 transition-colors block text-xs"
                 >
                   hello@whaliotechnologies.com
                 </a>
