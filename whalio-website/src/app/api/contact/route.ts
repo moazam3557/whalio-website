@@ -155,12 +155,12 @@ export async function POST(request: Request) {
       });
     }
 
-    // If no service key is configured, do NOT fake success. Return 503 configuration guidance.
+    // If no service key is configured, return user-friendly message redirecting to direct email.
     return NextResponse.json(
       {
         success: false,
         message:
-          'Contact service is pending setup. Please set RESEND_API_KEY or WEB3FORMS_ACCESS_KEY in environment variables, or email moazam.ali@whaliotechnologies.com directly.',
+          'Unable to submit form at this moment. Please email us directly at moazam.ali@whaliotechnologies.com and we will reply promptly!',
       },
       { status: 503 }
     );
