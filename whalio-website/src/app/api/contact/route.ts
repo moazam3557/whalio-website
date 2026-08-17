@@ -49,46 +49,10 @@ export async function POST(request: Request) {
 
     const errorsLog: string[] = [];
 
-    // Try Web3Forms API first if provided (since Web3Forms handles any recipient email without domain restrictions)
-    if (web3FormsKey) {
-      try {
-        const web3Res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            access_key: web3FormsKey,
-            subject: `New Lead from ${name} (${company}) - Whalio Website`,
-            from_name: name,
-            to_email: recipientEmail,
-            name,
-            company,
-            email,
-            phone: phone || 'N/A',
-            service,
-            message,
-          }),
-        });
-
-        const web3Data = await web3Res.json();
-        if (web3Res.ok && web3Data.success) {
-          return NextResponse.json({
-            success: true,
-            message: 'Your message has been sent successfully! We will get back to you shortly.',
-          });
-        }
-        errorsLog.push(`Web3Forms: ${web3Data.message || 'Submission failed'}`);
-      } catch (err: any) {
-        errorsLog.push(`Web3Forms network error: ${err.message}`);
-      }
-    }
-
-    // Try Resend API
+    // Provider 1: Resend API (Uses verified domain moazam.ali@whaliotechnologies.com)
     if (resendApiKey) {
       try {
-        const fromEmail = process.env.RESEND_FROM_EMAIL || 'Whalio Contact Form <onboarding@resend.dev>';
+        const fromEmail = process.env.RESEND_FROM_EMAIL || 'Whalio Technologies <moazam.ali@whaliotechnologies.com>';
 
         const resendRes = await fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -124,6 +88,49 @@ export async function POST(request: Request) {
         errorsLog.push(`Resend: ${resendData.message || resendData.error || 'Resend delivery failed'}`);
       } catch (err: any) {
         errorsLog.push(`Resend network error: ${err.message}`);
+      }
+    }
+
+    // Provider 2: Web3Forms API
+    if (web3FormsKey) {
+      try {
+        const web3Res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: web3FormsKey,
+            subject: `New Lead from ${name} (${company}) - Whalio Website`,
+            from_name: name,
+            to_email: recipientEmail,
+            name,
+            company,
+            email,
+            phone: phone || 'N/A',
+            service,
+            message,
+          }),
+        });
+
+        const web3RawText = await web3Res.text();
+        let web3Data: any = {};
+        try {
+          web3Data = JSON.parse(web3RawText);
+        } catch {
+          web3Data = { message: 'Unexpected non-JSON response' };
+        }
+
+        if (web3Res.ok && web3Data.success) {
+          return NextResponse.json({
+            success: true,
+            message: 'Your message has been sent successfully! We will get back to you shortly.',
+          });
+        }
+        errorsLog.push(`Web3Forms: ${web3Data.message || 'Submission failed'}`);
+      } catch (err: any) {
+        errorsLog.push(`Web3Forms network error: ${err.message}`);
       }
     }
 
