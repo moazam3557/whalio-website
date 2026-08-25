@@ -30,9 +30,9 @@ export const VisitingCardModal = () => {
       const opt = {
         margin: 0,
         filename: `${profile.name.replace(/\s+/g, '_')}_Visiting_Card.pdf`,
-        image: { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas: { scale: 3, useCORS: true, logging: false },
-        jsPDF: { unit: 'in', format: [3.5, 2.0] as [number, number], orientation: 'landscape' as const },
+        image: { type: 'jpeg' as const, quality: 1.0 },
+        html2canvas: { scale: 4, useCORS: true, logging: false },
+        jsPDF: { unit: 'px', format: [420, 240] as [number, number], orientation: 'landscape' as const },
       };
 
       await html2pdf().set(opt).from(element).save();

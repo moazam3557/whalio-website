@@ -84,8 +84,10 @@
     margin: 0 !important;
     box-shadow: none !important;
     border: none !important;
-    width: 3.5in !important;
-    height: 2.0in !important;
+    width: 420px !important;
+    height: 240px !important;
+    transform: scale(0.8) !important;
+    transform-origin: top left !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -94,4 +96,3 @@
     margin: 0;
   }
 }
-
