@@ -90,30 +90,16 @@ export const VisitingCard = React.forwardRef<HTMLDivElement, VisitingCardProps>(
           
           {/* Main User Bio Info */}
           <div className={`${includeQrCode ? 'col-span-8' : 'col-span-12'} space-y-2`}>
-            <div className="flex items-center gap-2.5">
-              {profile.photoUrl ? (
-                <img
-                  src={profile.photoUrl}
-                  alt={profile.name}
-                  className="w-10 h-10 rounded-full object-cover border border-cyan-400/50 shadow-md"
-                />
-              ) : (
-                <div className="w-9 h-9 rounded-full bg-slate-900 border border-slate-700/80 flex items-center justify-center text-cyan-400 font-bold text-xs shadow-inner">
-                  {profile.name.split(' ').map((n) => n[0]).join('')}
-                </div>
-              )}
-
-              <div>
-                <h3 className="text-sm font-bold text-white tracking-tight leading-tight">
-                  {profile.name}
-                </h3>
-                <p className="text-[11px] text-cyan-400 font-medium">
-                  {profile.title}
-                </p>
-                <p className="text-[9px] text-slate-400 font-mono">
-                  {profile.company}
-                </p>
-              </div>
+            <div>
+              <h3 className="text-[15px] font-bold text-white tracking-tight leading-tight">
+                {profile.name}
+              </h3>
+              <p className="text-[11px] text-cyan-400 font-medium mt-0.5">
+                {profile.title}
+              </p>
+              <p className="text-[9px] text-slate-400 font-mono mt-0.5">
+                {profile.company}
+              </p>
             </div>
 
             {/* Contact Details List */}

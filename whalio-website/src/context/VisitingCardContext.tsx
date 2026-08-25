@@ -25,7 +25,7 @@ export const DEFAULT_USER_PROFILE: UserProfileData = {
   secondaryEmail: 'hello@whaliotechnologies.com',
   phone: '+1 (555) 843-9254',
   website: 'whaliotechnologies.com',
-  address: 'San Francisco, CA & Global Remote',
+  address: 'Lahore, PK & Global Remote',
   profileUrl: 'https://whaliotechnologies.com/profile/moazam-ali',
 };
 
