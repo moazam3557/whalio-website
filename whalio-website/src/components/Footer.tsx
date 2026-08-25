@@ -3,9 +3,11 @@
 import React from 'react';
 import { WhalioLogo } from './WhalioLogo';
 import { useContactModal } from '@/context/ContactContext';
+import { useVisitingCardModal } from '@/context/VisitingCardContext';
 
 export const Footer = () => {
   const { openContactModal } = useContactModal();
+  const { openCardModal } = useVisitingCardModal();
 
   return (
     <footer className="bg-[#070c1a] text-slate-400 py-16 border-t border-slate-800/80">
@@ -79,6 +81,14 @@ export const Footer = () => {
                   className="text-cyan-400 font-semibold hover:underline cursor-pointer block text-left"
                 >
                   Send Inquiry Form →
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={openCardModal}
+                  className="text-slate-300 font-medium hover:text-cyan-400 cursor-pointer block text-left text-xs transition-colors"
+                >
+                  📇 Download Business Card
                 </button>
               </div>
               <div>

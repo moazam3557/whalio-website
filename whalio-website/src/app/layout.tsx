@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ContactProvider } from '@/context/ContactContext';
 import { ContactModal } from '@/components/ContactModal';
+import { VisitingCardProvider } from '@/context/VisitingCardContext';
+import { VisitingCardModal } from '@/components/VisitingCardModal';
 
 export const metadata: Metadata = {
   title: 'Whalio Technologies | Simple Software. Smarter Business.',
@@ -34,8 +36,11 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-[#f8fafc] text-[#0b132b]">
         <ContactProvider>
-          {children}
-          <ContactModal />
+          <VisitingCardProvider>
+            {children}
+            <ContactModal />
+            <VisitingCardModal />
+          </VisitingCardProvider>
         </ContactProvider>
       </body>
     </html>

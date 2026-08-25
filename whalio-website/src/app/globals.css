@@ -69,3 +69,29 @@
 .animate-pulse-slow {
   animation: pulseSlow 4s ease-in-out infinite;
 }
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #visiting-card-printable, #visiting-card-printable * {
+    visibility: visible !important;
+  }
+  #visiting-card-printable {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 3.5in !important;
+    height: 2.0in !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  @page {
+    size: 3.5in 2.0in;
+    margin: 0;
+  }
+}
+

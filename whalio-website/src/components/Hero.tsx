@@ -1,11 +1,13 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Database, Cpu, Workflow, BarChart3, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Database, Cpu, Workflow, BarChart3, CheckCircle2, Contact } from 'lucide-react';
 import { useContactModal } from '@/context/ContactContext';
+import { useVisitingCardModal } from '@/context/VisitingCardContext';
 
 export const Hero = () => {
   const { openContactModal } = useContactModal();
+  const { openCardModal } = useVisitingCardModal();
 
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-[#0b132b] text-white overflow-hidden border-b border-slate-800/80">
@@ -35,17 +37,24 @@ export const Hero = () => {
               Whalio Technologies builds practical software that helps businesses replace manual work, streamline operations, and make better decisions.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={openContactModal}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/35"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/35 cursor-pointer"
               >
                 Let's Talk
                 <ArrowRight className="w-5 h-5" />
               </button>
+              <button
+                onClick={openCardModal}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-cyan-500/40 hover:border-cyan-400 font-semibold text-sm sm:text-base transition-all duration-200 cursor-pointer shadow-sm"
+              >
+                <Contact className="w-5 h-5 text-cyan-400" />
+                Visiting Card
+              </button>
               <a
                 href="#solutions"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-slate-900/50 hover:bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 font-medium text-sm sm:text-base transition-all duration-200"
               >
                 See What We Do
               </a>

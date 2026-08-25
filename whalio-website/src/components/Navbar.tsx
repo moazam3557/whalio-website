@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { WhalioLogo } from './WhalioLogo';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Contact } from 'lucide-react';
 import { useContactModal } from '@/context/ContactContext';
+import { useVisitingCardModal } from '@/context/VisitingCardContext';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openContactModal } = useContactModal();
+  const { openCardModal } = useVisitingCardModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,11 +69,18 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Primary CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Primary CTA & Visiting Card */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={openCardModal}
+              className="px-4 py-2 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-cyan-400 border border-slate-700/80 hover:border-cyan-500/50 text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1.5"
+            >
+              <Contact className="w-3.5 h-3.5" />
+              Visiting Card
+            </button>
             <button
               onClick={openContactModal}
-              className="px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all duration-200 shadow-sm shadow-cyan-500/20 hover:shadow-cyan-400/30"
+              className="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs transition-all duration-200 shadow-sm shadow-cyan-500/20 hover:shadow-cyan-400/30 cursor-pointer"
             >
               Let's Talk
             </button>
@@ -105,7 +114,17 @@ export const Navbar = () => {
               </a>
             ))}
           </div>
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openCardModal();
+              }}
+              className="block w-full text-center px-5 py-3 rounded-lg bg-slate-900 border border-cyan-500/40 text-cyan-400 font-semibold text-sm hover:bg-slate-800 transition-colors flex items-center justify-center gap-2"
+            >
+              <Contact className="w-4 h-4" />
+              Download Visiting Card
+            </button>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
