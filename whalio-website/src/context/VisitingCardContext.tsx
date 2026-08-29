@@ -23,7 +23,7 @@ export const DEFAULT_USER_PROFILE: UserProfileData = {
   tagline: 'Simple software. Smarter business.',
   email: 'moazam.ali@whaliotechnologies.com',
   secondaryEmail: 'hello@whaliotechnologies.com',
-  phone: '+1 (555) 843-9254',
+  phone: '+92 347 8501001',
   website: 'whaliotechnologies.com',
   address: 'Lahore, PK & Global Remote',
   profileUrl: 'https://whaliotechnologies.com/profile/moazam-ali',
